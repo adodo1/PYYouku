@@ -13,25 +13,22 @@ class Youku:
         # 初始化
         self.base = 'http://www.id97.com/videos/flashxml/token/authtoken/ykurl/'
 
-    def parse(self, url, quality=None):
+    def parse(self, url):
         # 解析
         # url: 视频地址
-        # quality: 视频清晰度 1.标清 2.高清 3.超清 4.1080P None.所有清晰度
-
-        print self.getdata('http://www.id97.com/videos/flashxml/token/authtoken/ykurl/aHR0cDovL3YueW91a3UuY29tL3Zfc2hvdy9pZF9YT1RRek5EUTBOVGN5Lmh0bWw=', None)        
+        print self.getdata('http://www.id97.com/videos/flashxml/token/authtoken/ykurl/aHR0cDovL3YueW91a3UuY29tL3Zfc2hvdy9pZF9YT1RRek5EUTBOVGN5Lmh0bWw=')        
         pass
         
-    def getdata(self, url, quality):
+    def getdata(self, url):
         # GET请求
-        # auto:最高 normal:标清 high:高清 super:超清 original:1080P
+        
         qxd = 'auto'
         headers = {
                'User-Agent': USER_AGENT,
                'Content-Type': 'application/x-www-form-urlencoded'
               }
-        cookies = {
-               'qxd': 'hd2'
-              }
+        # auto:最高 normal:标清 high:高清(mp4) super:超清 original:1080P
+        cookies = { 'qxd': 'auto' }
         result = requests.get(url, headers=headers, cookies=cookies)
         return result.text
 
